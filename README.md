@@ -104,8 +104,8 @@ zlib1g-dev
 
 4. mibdef 
 ```MIBDEF(unsigned char, web_redir_en, , WEB_REDIR_EN, BYTE_T, APMIB_T, 0, 0)
-
-MIBDEF(unsigned char, web_redir_rul, [40], WEB_REDIR_URL, STRING_T, APMIB_T, 0, 0)
+```
+```MIBDEF(unsigned char, web_redir_rul, [40], WEB_REDIR_URL, STRING_T, APMIB_T, 0, 0)
 ```
 
 참조 파일경로
