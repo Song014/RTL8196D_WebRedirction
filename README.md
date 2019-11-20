@@ -1,6 +1,8 @@
 # RTL 8196D/E 기반 WebRedir 기능 구현
 
-Client의 웹 페이지 요청에 대해서 특정 URL은 허용, 나머지는 차단하여 클라이언트 웹 페이지 요청 패킷을 후킹, 해당 패킷을 공유기 자체 웹 서버로 전달하여 Redirection URL 클라이언트로 응답하는 기능 구현
+Client의 웹 페이지 요청에 대해서 특정 URL은 허용, 나머지는 차단하여 클라이언트 웹 페이지 요청 패킷을 후킹,
+
+해당 패킷을 공유기 자체 웹 서버로 전달하여 Redirection URL 클라이언트로 응답하는 기능 구현
 
 # 프로젝트 정보
 
@@ -8,27 +10,35 @@ Client의 웹 페이지 요청에 대해서 특정 URL은 허용, 나머지는 차단하여 클라이언트 �
 
 (필수)
 VirtualBox
+
 Ubuntu-14.04.1-desktop-i386.iso
 
 (선택사항)
 tftpd
+
 teraterm
+
 winscp
+
 putty
 
 ## 2. 사용 방법
 
 0) Linux에 해당 패키지를 설치하십시오
 libncurses5-dev
+
 build-essential
+
 gwak
+
 bison
+
 zlib1g-dev
 
 1) busybox의 설정에서 httpd 사용함으로 설정
 2) goagead 또는 boa 웹서버의 set_firewall.c에 다음 함수를 추가
 
-```int set_web_redir()
+``` int set_web_redir()
 
 {
     int val;
@@ -78,7 +88,7 @@ zlib1g-dev
     }
 
     return 0;
-}```
+} ```
 
 3) setFirewallIptablesRules() 함수 내에서 set_web_redir() 함수를 호출
 ``` #if 1
@@ -88,11 +98,11 @@ zlib1g-dev
 
 #endif
 	return 0;
-}```
+} ```
 
 4) mibdef 
-```MIBDEF(unsigned char, web_redir_en, , WEB_REDIR_EN, BYTE_T, APMIB_T, 0, 0)
-MIBDEF(unsigned char, web_redir_rul, [40], WEB_REDIR_URL, STRING_T, APMIB_T, 0, 0)```
+``` MIBDEF(unsigned char, web_redir_en, , WEB_REDIR_EN, BYTE_T, APMIB_T, 0, 0)
+MIBDEF(unsigned char, web_redir_rul, [40], WEB_REDIR_URL, STRING_T, APMIB_T, 0, 0) ```
 
 참조 파일경로
 users/goahead-2.1.1/LINUX/mibdef.h
