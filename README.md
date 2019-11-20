@@ -1,19 +1,19 @@
-# RTL 8196D/E ±â¹İ WebRedir ±â´É ±¸Çö
+# RTL 8196D/E ê¸°ë°˜ WebRedir ê¸°ëŠ¥ êµ¬í˜„
 
-ClientÀÇ À¥ ÆäÀÌÁö ¿äÃ»¿¡ ´ëÇØ¼­ Æ¯Á¤ URLÀº Çã¿ë, ³ª¸ÓÁö´Â Â÷´ÜÇÏ¿© Å¬¶óÀÌ¾ğÆ® À¥ ÆäÀÌÁö ¿äÃ» ÆĞÅ¶À» ÈÄÅ·,
+Clientì˜ ì›¹ í˜ì´ì§€ ìš”ì²­ì— ëŒ€í•´ì„œ íŠ¹ì • URLì€ í—ˆìš©, ë‚˜ë¨¸ì§€ëŠ” ì°¨ë‹¨í•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ ì›¹ í˜ì´ì§€ ìš”ì²­ íŒ¨í‚·ì„ í›„í‚¹,
 
-ÇØ´ç ÆĞÅ¶À» °øÀ¯±â ÀÚÃ¼ À¥ ¼­¹ö·Î Àü´ŞÇÏ¿© Redirection URL Å¬¶óÀÌ¾ğÆ®·Î ÀÀ´äÇÏ´Â ±â´É ±¸Çö
+í•´ë‹¹ íŒ¨í‚·ì„ ê³µìœ ê¸° ìì²´ ì›¹ ì„œë²„ë¡œ ì „ë‹¬í•˜ì—¬ Redirection URL í´ë¼ì´ì–¸íŠ¸ë¡œ ì‘ë‹µí•˜ëŠ” ê¸°ëŠ¥ êµ¬í˜„
 
-# ÇÁ·ÎÁ§Æ® Á¤º¸
+# í”„ë¡œì íŠ¸ ì •ë³´
 
-## 1. ¼³Ä¡
+## 1. ì„¤ì¹˜
 
-(ÇÊ¼ö)
+(í•„ìˆ˜)
 VirtualBox
 
 Ubuntu-14.04.1-desktop-i386.iso
 
-(¼±ÅÃ»çÇ×)
+(ì„ íƒì‚¬í•­)
 tftpd
 
 teraterm
@@ -22,9 +22,9 @@ winscp
 
 putty
 
-## 2. »ç¿ë ¹æ¹ı
+## 2. ì‚¬ìš© ë°©ë²•
 
-0) Linux¿¡ ÇØ´ç ÆĞÅ°Áö¸¦ ¼³Ä¡ÇÏ½Ê½Ã¿À
+0) Linuxì— í•´ë‹¹ íŒ¨í‚¤ì§€ë¥¼ ì„¤ì¹˜í•˜ì‹­ì‹œì˜¤
 libncurses5-dev
 
 build-essential
@@ -35,8 +35,8 @@ bison
 
 zlib1g-dev
 
-1. busyboxÀÇ ¼³Á¤¿¡¼­ httpd »ç¿ëÇÔÀ¸·Î ¼³Á¤
-2. goagead ¶Ç´Â boa À¥¼­¹öÀÇ set_firewall.c¿¡ ´ÙÀ½ ÇÔ¼ö¸¦ Ãß°¡
+1. busyboxì˜ ì„¤ì •ì—ì„œ httpd ì‚¬ìš©í•¨ìœ¼ë¡œ ì„¤ì •
+2. goagead ë˜ëŠ” boa ì›¹ì„œë²„ì˜ set_firewall.cì— ë‹¤ìŒ í•¨ìˆ˜ë¥¼ ì¶”ê°€
 
 ``` int set_web_redir()
 
@@ -54,7 +54,7 @@ zlib1g-dev
     RunSystemCmd(NULL_FILE, Iptables, _table, nat_table, INSERT, PREROUTING, jump, WEB_REDIR_CHAIN, NULL_STR);
     RunSystemCmd(NULL_FILE, Iptables, _table, nat_table, FLUSH, WEB_REDIR_CHAIN, NULL_STR);
 
-    if (1) /* »ç¿ëÀÚ°¡(À¥¼­¹ö UI ¸Ş´º) ¼³Á¤ÇÑ »ç¿ë ¿©ºÎ ¼³Á¤ °ª°ú ¿¬µ¿ */
+    if (1) /* ì‚¬ìš©ìê°€(ì›¹ì„œë²„ UI ë©”ë‰´) ì„¤ì •í•œ ì‚¬ìš© ì—¬ë¶€ ì„¤ì • ê°’ê³¼ ì—°ë™ */
 
     {
         system("httpd -p 81 -h /var/web");
@@ -64,7 +64,7 @@ zlib1g-dev
 
         {
             fprintf(fp, "<frameset>\n");
-            /* src¿¡ »ç¿ëÀÚ°¡ ¼³Á¤ÇÑ redirectionÇÒ À¥ »çÀÌÆ® °ª ¿¬µ¿ */
+            /* srcì— ì‚¬ìš©ìê°€ ì„¤ì •í•œ redirectioní•  ì›¹ ì‚¬ì´íŠ¸ ê°’ ì—°ë™ */
             fprintf(fp, "<frame name='CONTENT' src='http://www.iotek.co.kr' frameborder='0'>\n");
             fprintf(fp, "</frameset>\n");
             fclose(fp);
@@ -76,7 +76,7 @@ zlib1g-dev
         {
             apmib_get(MIB_IP_ADDR,  &lan_addr);
             strcpy(strLanIp, inet_ntoa(*((struct in_addr *)&lan_addr)));
-            /* iptables rule ½ÇÇà ½ºÅ©¸³Æ® »ı¼º */
+            /* iptables rule ì‹¤í–‰ ìŠ¤í¬ë¦½íŠ¸ ìƒì„± */
             fprintf(fp, "#!/bin/sh\n");
             fprintf(fp, "iptables -A web_redir -t nat -p tcp -d www.iotek.co.kr -j ACCEPT\n");
             fprintf(fp, "iptables -A web_redir -t nat -p tcp -d %s --dport 80 -j DNAT --to %s:80\n", strLanIp, strLanIp);
@@ -88,9 +88,10 @@ zlib1g-dev
     }
 
     return 0;
-} ```
+}
+```
 
-3. setFirewallIptablesRules() ÇÔ¼ö ³»¿¡¼­ set_web_redir() ÇÔ¼ö¸¦ È£Ãâ
+3. setFirewallIptablesRules() í•¨ìˆ˜ ë‚´ì—ì„œ set_web_redir() í•¨ìˆ˜ë¥¼ í˜¸ì¶œ
 ``` #if 1
 	apmib_get(MIB_WEB_REDIR_EN, (void *)&intVal);
 		set_web_redir();
@@ -98,12 +99,14 @@ zlib1g-dev
 
 #endif
 	return 0;
-} ```
+}
+```
 
 4. mibdef 
 ``` MIBDEF(unsigned char, web_redir_en, , WEB_REDIR_EN, BYTE_T, APMIB_T, 0, 0)
-MIBDEF(unsigned char, web_redir_rul, [40], WEB_REDIR_URL, STRING_T, APMIB_T, 0, 0) ```
+MIBDEF(unsigned char, web_redir_rul, [40], WEB_REDIR_URL, STRING_T, APMIB_T, 0, 0)
+```
 
-ÂüÁ¶ ÆÄÀÏ°æ·Î
+ì°¸ì¡° íŒŒì¼ê²½ë¡œ
 users/goahead-2.1.1/LINUX/mibdef.h
 users/goahead-2.1.1/LINUX/system/set_firewall
