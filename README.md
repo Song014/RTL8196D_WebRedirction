@@ -38,7 +38,7 @@ zlib1g-dev
 1. busybox의 설정에서 httpd 사용함으로 설정
 2. goagead 또는 boa 웹서버의 set_firewall.c에 다음 함수를 추가
 
-``` int set_web_redir()
+```int set_web_redir()
 
 {
     int val;
@@ -92,7 +92,7 @@ zlib1g-dev
 ```
 
 3. setFirewallIptablesRules() 함수 내에서 set_web_redir() 함수를 호출
-``` #if 1
+```#if 1
 	apmib_get(MIB_WEB_REDIR_EN, (void *)&intVal);
 		set_web_redir();
 }
@@ -103,7 +103,7 @@ zlib1g-dev
 ```
 
 4. mibdef 
-``` MIBDEF(unsigned char, web_redir_en, , WEB_REDIR_EN, BYTE_T, APMIB_T, 0, 0)
+```MIBDEF(unsigned char, web_redir_en, , WEB_REDIR_EN, BYTE_T, APMIB_T, 0, 0)
 MIBDEF(unsigned char, web_redir_rul, [40], WEB_REDIR_URL, STRING_T, APMIB_T, 0, 0)
 ```
 
